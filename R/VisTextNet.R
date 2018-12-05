@@ -5,7 +5,7 @@
 
 
 
-VisTextNet <- function(text_network, alpha = .25, label_degree_cut=0, betweenness=FALSE){
+VisTextNet <- function(text_network, alpha = .25, label_degree_cut=0, betweenness=FALSE, layout='auto'){
   
   
   
@@ -73,7 +73,7 @@ VisTextNet <- function(text_network, alpha = .25, label_degree_cut=0, betweennes
   }
   
   # make visualization
-  ggraph(pruned) +
+  ggraph(pruned, layout=layout) +
     geom_node_point(color = V(pruned)$modularity, size = size) +
     geom_edge_link(aes(edge_alpha = weight), show.legend = FALSE)+
     geom_node_text(aes(label = name, filter=degree>label_degree_cut), repel = TRUE, size=3) +
